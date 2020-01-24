@@ -1,1 +1,7 @@
-/build
+# generated files
+bin/
+gen/
+build/
+.idea/
+.idea/gradle.xml
+.idea/misc.xml
