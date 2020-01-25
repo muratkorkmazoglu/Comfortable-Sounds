@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Corfortable Sounds</string>
+    <string name="position" translatable="false">position</string>
+    <string name="comfortable_sounds">Comfortable Sounds</string>
+    <string name="favoritesFragment">Favorilerim</string>
+    <string name="categoriesFragment">Kategoriler</string>
+    <string name="categoryListFragment">"Kategori List "</string>
+
 </resources>

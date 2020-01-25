@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Comfortable Sounds-Corfortable Sounds.iml" filepath="$PROJECT_DIR$/Comfortable Sounds-Corfortable Sounds.iml" group="Corfortable Sounds" />
       <module fileurl="file://$PROJECT_DIR$/Corfortable Sounds.iml" filepath="$PROJECT_DIR$/Corfortable Sounds.iml" group="Corfortable Sounds" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Corfortable Sounds/app" />
     </modules>
