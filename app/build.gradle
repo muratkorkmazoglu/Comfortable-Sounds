@@ -37,8 +37,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
-        buildConfigField 'String', 'API_BASE_URL', '"http://karikafa.asameterden.com/"'
-        buildConfigField 'String', 'API_TOKEN', '"5886466a00f95704b5d9724a55c6c579"'
+        buildConfigField 'String', 'API_BASE_URL', '"file:///Users/murat/AndroidStudioProjects/Comfortable%20Sounds/"'
         multiDexEnabled true
     }
 

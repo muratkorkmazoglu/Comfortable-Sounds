@@ -1,9 +1,12 @@
 package com.murat.corfortablesounds.ui.main.categories.categoryList
 
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.murat.corfortablesounds.R
 import com.murat.corfortablesounds.core.BaseFragment
+import com.murat.corfortablesounds.core.Resource
 import com.murat.corfortablesounds.databinding.FragmentCategoryListBinding
+import com.murat.corfortablesounds.service.response.JsonData
 
 class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategoryListBinding>(
     CategoryListViewModel::class.java
@@ -18,8 +21,18 @@ class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategor
     override fun init() {
         super.init()
         handleProgress()
+        getJsonData()
         handleAdapter()
 
+    }
+
+    private fun getJsonData() {
+        viewModel.getSoundList()
+        viewModel.getJsonData.observe(viewLifecycleOwner, Observer<Resource<JsonData>> {
+            it.let {
+                Toast.makeText(context, it.data?.singerName, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun handleAdapter() {

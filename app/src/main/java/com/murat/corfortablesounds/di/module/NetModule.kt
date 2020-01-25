@@ -5,6 +5,8 @@ import android.os.Environment
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.murat.corfortablesounds.BuildConfig
+import com.murat.corfortablesounds.service.SoundsAPI
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.TimeUnit
@@ -55,6 +57,14 @@ class NetModule {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    }
+
+    @Provides
+    @Singleton
+    fun provideService(retrofit: Retrofit.Builder): SoundsAPI {
+        return retrofit.baseUrl(BuildConfig.API_BASE_URL)
+            .build()
+            .create(SoundsAPI::class.java)
     }
 
 
