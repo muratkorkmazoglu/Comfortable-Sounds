@@ -1,18 +1,17 @@
-package com.mrtteknology.app.kotlinkarikaturapp.db
+package com.murat.corfortablesounds.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.mrtteknology.app.kotlinkarikaturapp.db.dao.ComicsDao
-import com.mrtteknology.app.kotlinkarikaturapp.db.entities.ComicsEntity
-import com.mrtteknology.app.kotlinkarikaturapp.db.entities.TokenEntity
+import com.murat.corfortablesounds.db.dao.SoundsDao
+import com.murat.corfortablesounds.db.entities.SoundsEntitiy
+
 
 @Database(
     entities = [
-        ComicsEntity::class,
-        TokenEntity::class
+        SoundsEntitiy::class
     ],
     version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun comicsDao(): ComicsDao
+    abstract fun soundsDao(): SoundsDao
 }

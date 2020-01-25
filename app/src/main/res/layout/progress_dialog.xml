@@ -8,13 +8,14 @@
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/comfortable_sounds"
-        android:textAlignment="center"
-        android:textColor="@color/com_facebook_blue"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <ProgressBar
+        android:id="@android:id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:indeterminateTint="@color/dusty_gray"
+        android:indeterminateTintMode="src_in"
+        android:max="10000"
+        android:layout_gravity="center"/>
 
 </RelativeLayout>

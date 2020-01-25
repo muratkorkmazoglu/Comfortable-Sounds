@@ -37,7 +37,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
-        buildConfigField 'String', 'API_BASE_URL', '"file:///Users/murat/AndroidStudioProjects/Comfortable%20Sounds/"'
+        buildConfigField 'String', 'API_BASE_URL', '"https://demo4543774.mockable.io/"'
         multiDexEnabled true
     }
 

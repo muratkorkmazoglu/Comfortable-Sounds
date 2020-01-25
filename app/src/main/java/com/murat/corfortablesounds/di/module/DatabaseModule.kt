@@ -3,7 +3,7 @@ package com.murat.corfortablesounds.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.mrtteknology.app.kotlinkarikaturapp.db.AppDatabase
+import com.murat.corfortablesounds.db.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -9,10 +9,10 @@ data class JsonData(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:SerializedName("sound_name")
+    @field:SerializedName("soundName")
     val soundName: String? = null,
 
-    @field:SerializedName("singer_name")
+    @field:SerializedName("singerName")
     val singerName: String? = null,
 
     @field:SerializedName("mp3")

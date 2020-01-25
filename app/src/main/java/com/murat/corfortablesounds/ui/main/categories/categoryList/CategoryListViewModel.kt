@@ -2,6 +2,7 @@ package com.murat.corfortablesounds.ui.main.categories.categoryList
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.murat.corfortablesounds.App
 import com.murat.corfortablesounds.core.BaseViewModel
@@ -14,10 +15,17 @@ import timber.log.Timber
 
 
 class CategoryListViewModel(app: Application) : BaseViewModel(app) {
-    val getJsonData = MutableLiveData<Resource<JsonData>>()
+    val getJsonData = MutableLiveData<Resource<List<JsonData>>>()
+    var categoryItem = ObservableField<JsonData>()
+    var position = -1
 
     init {
         (app as? App)?.component?.inject(this)
+    }
+
+    fun setCategoryListItem(item: JsonData, position: Int) {
+        categoryItem.set(item)
+        this.position = position
     }
 
     @SuppressLint("CheckResult")
@@ -26,6 +34,8 @@ class CategoryListViewModel(app: Application) : BaseViewModel(app) {
             .subscribeOn(Schedulers.io())
             .map { Resource.success(it) }
             .onErrorReturn { Resource.error(it) }
+            .doOnSubscribe { progressLiveData.postValue(true) }
+            .doOnTerminate { progressLiveData.postValue(false) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it?.status) {

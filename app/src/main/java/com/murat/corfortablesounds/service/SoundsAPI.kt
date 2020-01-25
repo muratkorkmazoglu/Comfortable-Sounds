@@ -6,7 +6,7 @@ import retrofit2.http.*
 
 interface SoundsAPI {
 
-    @GET("file:///Users/murat/AndroidStudioProjects/Comfortable%20Sounds/json.html")
-    fun getJsonData(): Observable<JsonData>
+    @GET("sounds.json")
+    fun getJsonData(): Observable<List<JsonData>>
 
 }

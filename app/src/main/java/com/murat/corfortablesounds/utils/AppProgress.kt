@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.murat.corfortablesounds.R
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.progress_dialog.*
 
 class AppProgress {
     companion object {
