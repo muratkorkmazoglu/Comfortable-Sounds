@@ -12,7 +12,10 @@ class CategoriesViewModel(app: Application) : BaseViewModel(app) {
         "https://previews.123rf.com/images/corund/corund1309/corund130900177/22106111-piano-keys.jpg"
     var backgroundImageBird =
         "https://horizon-media.s3-eu-west-1.amazonaws.com/s3fs-public/field/image/brentgeese_edit.jpg"
-    var toolbarTitle: ObservableField<String> = ObservableField("")
+
+    var birds = "birds"
+    var piano = "piano"
+    var nature = "nature"
 
     init {
         (app as? App)?.component?.inject(this)

@@ -28,9 +28,58 @@ class CategoryListViewModel(app: Application) : BaseViewModel(app) {
         this.position = position
     }
 
+    fun getSoundList(categoryName: String) {
+        when (categoryName) {
+            "birds" -> {
+                getBirdsSound()
+            }
+            "piano" -> {
+                getPianoSound()
+            }
+            "nature" -> {
+                getNatureSound()
+            }
+        }
+    }
     @SuppressLint("CheckResult")
-    fun getSoundList(){
-        baseApi.getJsonData()
+    private fun getNatureSound() {
+        baseApi.getNatureSounds()
+            .subscribeOn(Schedulers.io())
+            .map { Resource.success(it) }
+            .onErrorReturn { Resource.error(it) }
+            .doOnSubscribe { progressLiveData.postValue(true) }
+            .doOnTerminate { progressLiveData.postValue(false) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it?.status) {
+                    Status.SUCCESS -> getJsonData.postValue(it)
+                    Status.LOADING -> ""
+                    Status.ERROR -> Timber.e(it.error)
+                }
+            }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun getPianoSound() {
+        baseApi.getPianoSounds()
+            .subscribeOn(Schedulers.io())
+            .map { Resource.success(it) }
+            .onErrorReturn { Resource.error(it) }
+            .doOnSubscribe { progressLiveData.postValue(true) }
+            .doOnTerminate { progressLiveData.postValue(false) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it?.status) {
+                    Status.SUCCESS -> getJsonData.postValue(it)
+                    Status.LOADING -> ""
+                    Status.ERROR -> Timber.e(it.error)
+                }
+            }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun getBirdsSound() {
+        baseApi.getBirdsSound()
             .subscribeOn(Schedulers.io())
             .map { Resource.success(it) }
             .onErrorReturn { Resource.error(it) }
@@ -51,6 +100,7 @@ class CategoryListViewModel(app: Application) : BaseViewModel(app) {
             db.soundsDao().insertSound(item)
         }
     }
+
     fun deleteFavorite(item: SoundsEntitiy) {
         doAsync {
             db.soundsDao().deleteSounds(item.id)

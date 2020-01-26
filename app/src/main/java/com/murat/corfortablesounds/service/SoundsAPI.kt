@@ -7,7 +7,13 @@ import retrofit2.http.*
 
 interface SoundsAPI {
 
-    @GET("sounds.json")
-    fun getJsonData(): Observable<List<SoundsEntitiy>>
+    @GET("birds.json")
+    fun getBirdsSound(): Observable<List<SoundsEntitiy>>
+
+    @GET("piano.json")
+    fun getPianoSounds(): Observable<List<SoundsEntitiy>>
+
+    @GET("nature.json")
+    fun getNatureSounds(): Observable<List<SoundsEntitiy>>
 
 }

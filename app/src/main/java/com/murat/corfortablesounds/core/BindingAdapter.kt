@@ -53,7 +53,7 @@ object BindingAdapter {
         view.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("categoryName", name)
-            view.findNavController().navigate(R.id.categoryListFragment)
+            view.findNavController().navigate(R.id.categoryListFragment,bundle)
         }
     }
 

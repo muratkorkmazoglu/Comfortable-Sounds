@@ -11,7 +11,7 @@ import com.murat.corfortablesounds.ui.main.categories.categoryList.adapter.Categ
 class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategoryListBinding>(
     CategoryListViewModel::class.java
 ) {
-
+    var categoryName = ""
     override fun initViewModel() {
         mBinding.viewModel = viewModel
     }
@@ -21,13 +21,19 @@ class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategor
     override fun init() {
         super.init()
         handleProgress()
+        getListArguments()
         handleAdapter()
         getJsonData()
 
+
+    }
+
+    private fun getListArguments() {
+        categoryName = arguments?.getString("categoryName")!!
     }
 
     private fun getJsonData() {
-        viewModel.getSoundList()
+        viewModel.getSoundList(categoryName)
         viewModel.getJsonData.observe(viewLifecycleOwner, Observer<Resource<List<SoundsEntitiy>>> {
             it.let {
                 (mBinding.itemsRecycler.adapter as CategoryListAdapter).submitList(it?.data)

@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setCategoryListFragment="@{viewModel.backgroundImageNature}" >
+                app:setCategoryListFragment="@{viewModel.birds}" >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bird"
-                app:setCategoryListFragment="@{viewModel.backgroundImageNature}">
+                app:setCategoryListFragment="@{viewModel.piano}">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/piano"
-                app:setCategoryListFragment="@{viewModel.backgroundImageNature}">
+                app:setCategoryListFragment="@{viewModel.nature}">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
