@@ -27,16 +27,9 @@ class FavoritesFragment :
 
     private fun handleAdapter() {
         val favoritesAdapter =
-            FavoritesAdapter { item, position, img, started ->
-                if (img == "favImg") {
-                    viewModel.removeFavorites(item)
-                } else if (img == "playImg") {
-                    viewModel.handlePlayer(item)
-                    if (started)
-                        viewModel.startMedia()
-                    else
-                        viewModel.stopMedia()
-                }
+            FavoritesAdapter { item, position ->
+
+                viewModel.removeFavorites(item)
             }
         mBinding.favoritesRecycler.adapter = favoritesAdapter
     }

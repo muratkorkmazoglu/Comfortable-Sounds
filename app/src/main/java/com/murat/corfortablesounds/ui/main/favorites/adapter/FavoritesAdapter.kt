@@ -18,7 +18,7 @@ import com.murat.corfortablesounds.db.entities.SoundsEntitiy
 import com.murat.corfortablesounds.ui.main.favorites.FavoritesViewModel
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class FavoritesAdapter(private val callBack: (SoundsEntitiy, Int, String, Boolean) -> Unit) :
+class FavoritesAdapter(private val callBack: (SoundsEntitiy, Int) -> Unit) :
     BaseAdapter<SoundsEntitiy>(categoryListDiffCallback) {
     var flag = true
     lateinit var mediaPlayer: MediaPlayer
@@ -35,7 +35,7 @@ class FavoritesAdapter(private val callBack: (SoundsEntitiy, Int, String, Boolea
 
         mBinding.favImg.onClick {
             mBinding.viewModel?.favoritesItem?.get()?.let {
-                callBack.invoke(it, mBinding.viewModel!!.position, "favImg", false)
+                callBack.invoke(it, mBinding.viewModel!!.position)
             }
         }
         mBinding.playImg.onClick {

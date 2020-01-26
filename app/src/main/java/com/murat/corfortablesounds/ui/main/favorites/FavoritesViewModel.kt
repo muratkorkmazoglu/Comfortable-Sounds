@@ -29,9 +29,7 @@ class FavoritesViewModel(app: Application) : BaseViewModel(app) {
 
     fun getFavorites() {
         doAsync {
-            if (db.soundsDao().getSounds().isNotEmpty()) {
-                favoritesList.postValue(db.soundsDao().getSounds())
-            }
+            favoritesList.postValue(db.soundsDao().getSounds())
         }
 
     }
@@ -41,37 +39,5 @@ class FavoritesViewModel(app: Application) : BaseViewModel(app) {
             db.soundsDao().deleteSounds(item.id)
             getFavorites()
         }
-    }
-
-    fun handlePlayer(item: SoundsEntitiy) {
-        if (!isCreated) {
-            try {
-                mediaPlayer.setDataSource(item.mp3)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            try {
-                mediaPlayer.prepareAsync()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            isCreated = true
-        }
-
-    }
-
-    fun startMedia() {
-        mediaPlayer.setOnPreparedListener {
-            mediaPlayer.start()
-        }
-    }
-
-    fun stopMedia() {
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
-            mediaPlayer.release()
-            isCreated = false
-        }
-
     }
 }
