@@ -1,14 +1,11 @@
 package com.murat.corfortablesounds.ui.main.categories.categoryList
 
-import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.murat.corfortablesounds.R
 import com.murat.corfortablesounds.core.BaseFragment
 import com.murat.corfortablesounds.core.Resource
 import com.murat.corfortablesounds.databinding.FragmentCategoryListBinding
-import com.murat.corfortablesounds.service.response.JsonData
+import com.murat.corfortablesounds.db.entities.SoundsEntitiy
 import com.murat.corfortablesounds.ui.main.categories.categoryList.adapter.CategoryListAdapter
 
 class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategoryListBinding>(
@@ -31,7 +28,7 @@ class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategor
 
     private fun getJsonData() {
         viewModel.getSoundList()
-        viewModel.getJsonData.observe(viewLifecycleOwner, Observer<Resource<List<JsonData>>> {
+        viewModel.getJsonData.observe(viewLifecycleOwner, Observer<Resource<List<SoundsEntitiy>>> {
             it.let {
                 (mBinding.itemsRecycler.adapter as CategoryListAdapter).submitList(it?.data)
             }
@@ -40,8 +37,12 @@ class CategoryListFragment : BaseFragment<CategoryListViewModel, FragmentCategor
 
     private fun handleAdapter() {
         val categoryListAdapter =
-            CategoryListAdapter { item, position ->
-
+            CategoryListAdapter { item, position, selected ->
+                if (selected) {
+                    viewModel.saveFavorite(item)
+                } else {
+                    viewModel.deleteFavorite(item)
+                }
             }
         mBinding.itemsRecycler.adapter = categoryListAdapter
     }

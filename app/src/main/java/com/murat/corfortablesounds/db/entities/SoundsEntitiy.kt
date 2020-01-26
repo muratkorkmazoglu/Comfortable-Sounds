@@ -12,9 +12,9 @@ data class SoundsEntitiy(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int = 0,
-    @ColumnInfo(name = "soundName")
+    @ColumnInfo(name = "sound_name")
     var soundName: String?,
-    @ColumnInfo(name = "singerName")
+    @ColumnInfo(name = "singer_name")
     var singerName: String?,
     @ColumnInfo(name = "mp3")
     var mp3: String?

@@ -1,5 +1,6 @@
 package com.murat.corfortablesounds.service
 
+import com.murat.corfortablesounds.db.entities.SoundsEntitiy
 import com.murat.corfortablesounds.service.response.JsonData
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -7,6 +8,6 @@ import retrofit2.http.*
 interface SoundsAPI {
 
     @GET("sounds.json")
-    fun getJsonData(): Observable<List<JsonData>>
+    fun getJsonData(): Observable<List<SoundsEntitiy>>
 
 }

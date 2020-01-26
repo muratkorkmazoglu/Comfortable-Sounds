@@ -1,12 +1,15 @@
 package com.murat.corfortablesounds.ui.main.favorites
 
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.murat.corfortablesounds.R
 import com.murat.corfortablesounds.core.BaseFragment
 import com.murat.corfortablesounds.databinding.FragmentFavoritesBinding
+import com.murat.corfortablesounds.ui.main.categories.categoryList.adapter.CategoryListAdapter
+import com.murat.corfortablesounds.ui.main.favorites.adapter.FavoritesAdapter
 
-
-class FavoritesFragment : BaseFragment<FavoritesViewModel, FragmentFavoritesBinding>(FavoritesViewModel::class.java) {
+class FavoritesFragment :
+    BaseFragment<FavoritesViewModel, FragmentFavoritesBinding>(FavoritesViewModel::class.java) {
 
     override fun initViewModel() {
         mBinding.viewModel = viewModel
@@ -17,7 +20,26 @@ class FavoritesFragment : BaseFragment<FavoritesViewModel, FragmentFavoritesBind
     override fun init() {
         super.init()
         handleProgress()
+        getFavorites()
+        handleAdapter()
 
+    }
+
+    private fun handleAdapter() {
+        val favoritesAdapter =
+            FavoritesAdapter { item, position ->
+
+            }
+        mBinding.favoritesRecycler.adapter = favoritesAdapter
+    }
+
+    private fun getFavorites() {
+        viewModel.getFavorites()
+        viewModel.favoritesList.observe(viewLifecycleOwner, Observer {
+            it.let {
+                (mBinding.favoritesRecycler.adapter as FavoritesAdapter).submitList(it)
+            }
+        })
     }
 
 

@@ -8,22 +8,22 @@ import com.murat.corfortablesounds.App
 import com.murat.corfortablesounds.core.BaseViewModel
 import com.murat.corfortablesounds.core.Resource
 import com.murat.corfortablesounds.core.Status
-import com.murat.corfortablesounds.service.response.JsonData
+import com.murat.corfortablesounds.db.entities.SoundsEntitiy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.doAsync
 import timber.log.Timber
 
-
 class CategoryListViewModel(app: Application) : BaseViewModel(app) {
-    val getJsonData = MutableLiveData<Resource<List<JsonData>>>()
-    var categoryItem = ObservableField<JsonData>()
+    val getJsonData = MutableLiveData<Resource<List<SoundsEntitiy>>>()
+    var categoryItem = ObservableField<SoundsEntitiy>()
     var position = -1
 
     init {
         (app as? App)?.component?.inject(this)
     }
 
-    fun setCategoryListItem(item: JsonData, position: Int) {
+    fun setCategoryListItem(item: SoundsEntitiy, position: Int) {
         categoryItem.set(item)
         this.position = position
     }
@@ -44,6 +44,17 @@ class CategoryListViewModel(app: Application) : BaseViewModel(app) {
                     Status.ERROR -> Timber.e(it.error)
                 }
             }
+    }
+
+    fun saveFavorite(item: SoundsEntitiy) {
+        doAsync {
+            db.soundsDao().insertSound(item)
+        }
+    }
+    fun deleteFavorite(item: SoundsEntitiy) {
+        doAsync {
+            db.soundsDao().deleteSounds(item.id)
+        }
     }
 
 }
