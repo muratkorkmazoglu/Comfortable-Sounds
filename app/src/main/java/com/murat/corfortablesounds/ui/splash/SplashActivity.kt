@@ -40,7 +40,7 @@ class SplashActivity :
                 startActivity(intent)
                 finish()
             },
-            1000
+            2000
         )
     }
 

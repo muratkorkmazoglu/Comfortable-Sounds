@@ -61,9 +61,9 @@ class FavoritesAdapter(private val callBack: (SoundsEntitiy, Int, String, Boolea
         }
         mBinding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (p2){
+                if (p2) {
                     var volumeNum = p1 / 100.0f
-                    mediaPlayer.setVolume(volumeNum,volumeNum)
+                    mediaPlayer.setVolume(volumeNum, volumeNum)
                 }
 
             }
@@ -88,6 +88,7 @@ class FavoritesAdapter(private val callBack: (SoundsEntitiy, Int, String, Boolea
         binding.favImg.isSelected = true
         binding.playImg.setImageResource(R.drawable.ic_play_arrow_black_24dp)
         binding.playImg.isSelected = true
+        var id = getItem(position).id.toString()
         mediaPlayer = MediaPlayer()
         binding.executePendingBindings()
     }
